@@ -1,0 +1,46 @@
+\documentclass[a4paper]{book}
+%\usepackage[headsep=1cm,headheight=2cm,hmargin=1.5cm,includefoot,footskip=20pt]{geometry}
+%\usepackage[colorlinks=true]{hyperref} % Hyperlinks
+%\usepackage{colortbl}
+%\usepackage{fancyhdr} % For headers and footers. Needed for page numbering,
+%\usepackage{lastpage}  % Page Numbering
+%\usepackage{longtable} % Needed to split long tables in more pages
+%\usepackage{rotating} %The package rotate any object of an arbitrary angle.
+%\usepackage{chngpage} % Change page layout
+%\%usepackage[dvipsnames,table, xcdraw]{xcolor}
+%\usepackage{color}
+%\usepackage[T1]{fontenc} % Keep the underscore when cpy/pa
+%\pagestyle{fancy}
+%\usepackage{tocloft}
+
+%\hypersetup{
+%  colorlinks = black, %Colour links instead of ugly boxes
+%  urlcolor   = black, %Colour for external hyperlinks
+%  linkcolor  = red,   %Colour of internal links
+%  citecolor  = black  %Colour of citations
+%}
+%\makeatletter
+%\let\ps@plain\ps@fancy
+%\makeatother
+
+%\cfoot{\thepage\ of \pageref*{LastPage}}
+
+%\title{Document title}
+%\date{\today}
+%\author{Name Surname}
+
+%\begin{document}
+
+\chapter{Latex pdf by R}
+Hello world
+%\rowcolors{2}{gray!25}{white}
+%\maketitle
+%\tableofcontents
+%\hypersetup{linkcolor=black}
+
+%<<box1, echo = FALSE, results = 'asis'>>=
+%print('Hello World')
+
+%@
+
+\end{document}
