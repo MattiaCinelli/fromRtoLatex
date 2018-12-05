@@ -1,46 +1,144 @@
 \documentclass[a4paper]{book}
-%\usepackage[headsep=1cm,headheight=2cm,hmargin=1.5cm,includefoot,footskip=20pt]{geometry}
-%\usepackage[colorlinks=true]{hyperref} % Hyperlinks
-%\usepackage{colortbl}
-%\usepackage{fancyhdr} % For headers and footers. Needed for page numbering,
-%\usepackage{lastpage}  % Page Numbering
-%\usepackage{longtable} % Needed to split long tables in more pages
-%\usepackage{rotating} %The package rotate any object of an arbitrary angle.
-%\usepackage{chngpage} % Change page layout
-%\%usepackage[dvipsnames,table, xcdraw]{xcolor}
-%\usepackage{color}
-%\usepackage[T1]{fontenc} % Keep the underscore when cpy/pa
+\usepackage[headsep=1cm,headheight=2cm,hmargin=1.5cm,includefoot,footskip=20pt]{geometry}
+\usepackage[colorlinks=true]{hyperref} % Hyperlinks
+\usepackage{colortbl}
+\usepackage{fancyhdr} % For headers and footers. Needed for page numbering,
+\usepackage{lastpage}  % Page Numbering
+\usepackage{longtable} % Needed to split long tables in more pages
+\usepackage{rotating} %The package rotate any object of an arbitrary angle.
+\usepackage{chngpage} % Change page layout
+\usepackage[dvipsnames,table, xcdraw]{xcolor}
+\usepackage{color}
+\usepackage[T1]{fontenc} % Keep the underscore when cpy/pa
+\pagestyle{fancy}
+\usepackage{tocloft}
+
+\hypersetup{
+  colorlinks = black, %Colour links instead of ugly boxes
+  urlcolor   = black, %Colour for external hyperlinks
+  linkcolor  = red,   %Colour of internal links
+  citecolor  = black  %Colour of citations
+}
+\makeatletter
+\let\ps@plain\ps@fancy
+\makeatother
+\cfoot{\thepage\ of \pageref*{LastPage}}
+
+% Header for each the page
 %\pagestyle{fancy}
-%\usepackage{tocloft}
+%\fancyhf{}
+%\renewcommand{\headrulewidth}{0pt}
+%\newcolumntype{Y}{>{\centering\arraybackslash}X}
 
-%\hypersetup{
-%  colorlinks = black, %Colour links instead of ugly boxes
-%  urlcolor   = black, %Colour for external hyperlinks
-%  linkcolor  = red,   %Colour of internal links
-%  citecolor  = black  %Colour of citations
+% Header present in all pages
+
+%\fancyhead[C]{%
+%  \begin{tabularx}{\textwidth}{@{}|Y|Y|Y|@{}}
+%  \hline
+%   M. Cinelli & FromRtoLatex & Page \thepage\ of \pageref*{LastPage} \\ \hline
+%  \end{tabularx}
 %}
-%\makeatletter
-%\let\ps@plain\ps@fancy
-%\makeatother
+% This line allows tollerance for spaces and page borders
 
-%\cfoot{\thepage\ of \pageref*{LastPage}}
+\newenvironment{tolerant}[1]{%
+\par\tolerance=#1\relax
+}{%
+  \par
+}
 
-%\title{Document title}
-%\date{\today}
-%\author{Name Surname}
+%Title
+\title{Latex document generated in R}
+\date{\today}
+\author{Mattia Cinelli}
 
-%\begin{document}
+\begin{document}
 
-\chapter{Latex pdf by R}
-Hello world
-%\rowcolors{2}{gray!25}{white}
-%\maketitle
-%\tableofcontents
-%\hypersetup{linkcolor=black}
+<<LoadPackages, echo=FALSE, results = 'hide'>>=
+library("xtable")
+@
 
-%<<box1, echo = FALSE, results = 'asis'>>=
-%print('Hello World')
+\maketitle % Create cover page
 
-%@
+\tableofcontents % Table of content
 
-\end{document}
+\chapter{The Rnw file}
+Rnw (or Sweave) files support authoring documents that contain a mix of content and R code, allowing you to execute and embed the results of R computations and graphics within a document. This enables the creation of dynamic reports that are updated automatically if data or analysis changes.
+
+The process of "weaving" an Rnw file involves executing R code and inserting it into the document. The traditional method of weaving Rnw files is the version of Sweave that is included within the base distribution of R. In addition to Sweave, RStudio also supports using the knitr package to weave Rnw files.
+
+You can customize the method used to weave Rnw files on a global, per-project, and per-file basis.
+
+\begin{verbatim}
+> <<Name-of-the-R-block, echo = FALSE, results = 'hide'>>=
+\end{verbatim}
+
+\chapter{Creating and importing a plot}
+
+<<CreatePlot, echo = TRUE, results = 'hide'>>=
+data(iris)
+jpeg('iris.png')
+plot(iris$Petal.Length,
+     iris$Petal.Width,
+     pch=21,
+     bg=c("red","green3","blue")[unclass(iris$Species)],
+     main="Edgar Anderson's Iris Data")
+dev.off()
+@
+
+echo=FALSE indicates that the code will not be shown in the final document (though any results/output would still be displayed).
+
+You use results="hide" to hide the results/output (but here the code would still be displayed).
+
+You use include=FALSE to have the chunk evaluated, but neither the code nor its output displayed.
+
+warning=FALSE and message=FALSE
+
+\begin{verbatim}
+\begin{figure}[h]
+\centering
+\includegraphics[width=.45\linewidth]{iris.png}
+\caption[Iris Data]{Edgar Anderson\'s Iris Data.}
+\label{IrisData}
+\end{figure}
+\end{verbatim}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.45\linewidth]{iris.png}
+\caption[Iris Data]{Edgar Anderson\'s Iris Data.}
+\label{IrisData}
+\end{figure}
+
+
+\chapter{Creating a table}
+
+\begin{verbatim}
+table_latex <- xtable::xtable(iris[1:50,], caption = "Iris Data")
+
+print(table_latex,
+      latex.environments =  c("scriptsize", "center", "widestuff"),
+      tabular.environment = "longtable",
+      floating = FALSE
+)
+\end{verbatim}
+
+
+<<CreateTable,  echo=TRUE, results = 'asis'>>=
+table_latex <- xtable::xtable(iris[1:50,],
+                              caption = "Iris Data")
+
+print(table_latex,
+      latex.environments =  c("scriptsize", "center", "widestuff"),
+      tabular.environment = "longtable",
+      floating = FALSE
+)
+@
+\if\Sexpr{tolower(TRUE)}{
+    \chapter{Usefull links}
+    \begin{enumerate}
+    \item \url{https://yihui.name/knitr/}
+    \item \url{https://cran.r-project.org/web/packages/knitr/knitr.pdf}
+    \end{enumerate}
+    \end{document}
+}
+\fi
