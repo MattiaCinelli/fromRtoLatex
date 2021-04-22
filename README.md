@@ -1,7 +1,9 @@
 # fromRtoLatex
 For a more details read my article [here](https://towardsdatascience.com/how-to-combine-latex-and-r-for-report-generation-82f23787fc43)
 
-![Banner](https://github.com/MattiaCinelli/fromRtoLatex/blob/commons/banner.png?raw=true)
+<p align="center">
+  <img src="https://github.com/MattiaCinelli/fromRtoLatex/blob/master/common/banner.png" alt="Sankey Plot in Python"  width="900"/>
+</p>
 
 Two are the steps needed to create a R/tex report, a `starter` R script to create the final pdf, and a `.Rnw` file where all our code will be stored. 
 
