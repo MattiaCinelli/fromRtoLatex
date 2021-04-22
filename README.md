@@ -35,7 +35,7 @@ The `.Rnw` (or `Sweave`) file is in essence a .tex file in which it is possible 
 The structure of the file follows the normal structure of a LaTeX work starting with the declaration of the document class but at any point in the code you can add R blocks of code.
 
 Those are defined between two elements: a ``<<…>>`` in which the setting of the R code blocks are passed and a `@`, that defines its end.
-```r
+```Rnw
 \documentclass[a4paper]{book}
 \usepackage[headsep=1cm, headheight=2cm, hmargin=1.5cm, includefoot, footskip=20pt]{geometry}
 \usepackage[colorlinks=true]{hyperref} % Hyperlinks
@@ -57,7 +57,6 @@ Those are defined between two elements: a ``<<…>>`` in which the setting of th
 
 \chapter{The Rnw file}
 bla bla bla 
-
 ```
 
 
