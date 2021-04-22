@@ -1,4 +1,7 @@
 # fromRtoLatex
+![stars](https://img.shields.io/github/stars/MattiaCinelli/fromRtoLatex) ![forks](https://img.shields.io/github/forks/MattiaCinelli/fromRtoLatex)
+![license](https://img.shields.io/github/license/MattiaCinelli/fromRtoLatex)
+
 For a more details read my article [here](https://towardsdatascience.com/how-to-combine-latex-and-r-for-report-generation-82f23787fc43)
 
 <p align="center">
